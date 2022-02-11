@@ -18,7 +18,7 @@
     "body-parser": "^1.18.3",
     "express": "^4.17.2",
     "jquery": "^3.3.1",
-    "pg": "^8.2.1"
+    "pg": "^8.7.3"
   },
   "repository": {
     "type": "git",
