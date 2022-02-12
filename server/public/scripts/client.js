@@ -10,11 +10,32 @@ function onReady() {
 
     // click listeners
     $('#formContainer').on('click', '#addButton', postListItem);
-    $('#listTable').on('change', '.completeCheckbox', handleCheckbox);
+    $('#listTable').on('change', '.completeCheckbox', updateTask);
 }
 
-function handleCheckbox() {
-    console.log('hi');
+function updateTask() {
+    // define value of unique list item id
+    let id = $(this).data('id');
+    // define value of list item's completion status (true or false)
+    let checkboxStatus = $(this).data('status');
+
+    console.log('in updateTask', id, checkboxStatus);
+    
+    $.ajax({
+        type: 'PUT',
+        url: `/items/${id}`,
+        data: {
+            complete: !checkboxStatus
+        }
+    }).then(function(response){
+        console.log('PUTTER response', response);
+
+        // get latest list from database
+        getList();
+    }).catch(function(error){
+        console.log('error in PUTTER', error);
+        
+    })
 } // end handleCheckbox
 
 // --------------- GETTER ----------------------//
@@ -26,7 +47,7 @@ function getList() {
         type: 'GET',
         url: '/list'
     }).then(function (response){
-        console.log('response', response);
+        console.log('GETTER response', response);
         
         // trigger renderList
         renderList(response);
@@ -54,7 +75,7 @@ function renderList(response){
         <tr>
             <td id="completedColumn">
             ${list[i].complete}
-            <input type="checkbox" class="completeCheckbox" value="false" data-id=${list.id}>
+            <input type="checkbox" class="completeCheckbox" data-status=${list[i].complete} data-id=${list[i].id}>
             </td>
 
             <td>${list[i].task}</td>
