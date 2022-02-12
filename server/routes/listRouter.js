@@ -66,3 +66,27 @@ router.put('/:id', (req, res) => {
         })
 });
 // --------------- END COMPLETION STATUS PUTTER ------------------//
+
+
+// --------------- DELETE TASK ------------------//
+router.delete('/:id', (req, res) => {
+    // define variable for unique id click
+    let idToUpdate = req.params.id;
+
+    console.log('idToUpdate', idToUpdate);
+    
+    let queryText = 'DELETE FROM "list" WHERE "id" = $1;';
+
+    pool.query(queryText, [idToUpdate])
+        .then((result) => {
+            console.log('Task deleted');
+            
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log('Error deleting task', queryText, error);
+            
+            res.sendStatus(500);
+        })
+})
+// --------------- END DELETE TASK ----------------//
