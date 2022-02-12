@@ -10,7 +10,12 @@ function onReady() {
 
     // click listeners
     $('#formContainer').on('click', '#addButton', postListItem);
+    $('#listTable').on('change', '.completeCheckbox', handleCheckbox);
 }
+
+function handleCheckbox() {
+    console.log('hi');
+} // end handleCheckbox
 
 // --------------- GETTER ----------------------//
 function getList() {
@@ -49,7 +54,7 @@ function renderList(response){
         <tr>
             <td id="completedColumn">
             ${list[i].complete}
-            <input type="checkbox" id="completeCheckbox" data-id=${list.id}>
+            <input type="checkbox" class="completeCheckbox" value="false" data-id=${list.id}>
             </td>
 
             <td>${list[i].task}</td>
