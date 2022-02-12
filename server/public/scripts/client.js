@@ -7,6 +7,9 @@ function onReady() {
     
     // get list from server/database
     getList();
+
+    // click listeners
+    $('#formContainer').on('click', postListItem);
 }
 
 // --------------- GETTER ----------------------//
@@ -27,7 +30,7 @@ function getList() {
         console.log('error in GETTER', error);
         
     })
-} // end getList
+}
 // --------------- END GETTER ------------------//
 
 
@@ -50,5 +53,5 @@ function renderList(response){
         </tr>
         `)
     }
-} // end renderList
+} 
 // ----------- END RENDER FUNCTIONS -----------//
