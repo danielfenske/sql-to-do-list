@@ -47,7 +47,7 @@ function deleteTask(){
     console.log('in deleteTask');
     
      // define value of unique list item id
-     let id = $(this).data('id');
+     let id = $(this).data('delete');
 
     $.ajax({
         type: 'DELETE',
@@ -107,7 +107,7 @@ function renderList(response){
 
                 <td>${list[i].task}</td>
                 <td>${list[i].category}</td>
-                <td><button class="deleteButton">Delete</button></td>
+                <td><button class="deleteButton" data-delete=${list[i].id}>Delete</button></td>
             </tr>
             `)
         } else {
@@ -118,7 +118,7 @@ function renderList(response){
                 </td>
                 <td class="taskComplete">${list[i].task}</td>
                 <td>${list[i].category}</td>
-                <td><button class="deleteButton" data-id=${list[i].id}>Delete</button></td>
+                <td><button class="deleteButton" data-delete=${list[i].id}>Delete</button></td>
             </tr>
             `)
         }
