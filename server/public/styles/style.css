@@ -5,3 +5,7 @@ table {
 th {
     text-align: left;
 }
+
+.taskComplete {
+    text-decoration: line-through;
+}
