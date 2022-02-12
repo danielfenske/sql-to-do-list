@@ -23,9 +23,9 @@ function updateTask() {
     
     $.ajax({
         type: 'PUT',
-        url: `/items/${id}`,
+        url: `/list/${id}`,
         data: {
-            complete: !checkboxStatus
+            newCompletionStatus: !checkboxStatus
         }
     }).then(function(response){
         console.log('PUTTER response', response);
