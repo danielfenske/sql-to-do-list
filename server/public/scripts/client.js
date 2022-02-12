@@ -11,8 +11,10 @@ function onReady() {
     // click listeners
     $('#formContainer').on('click', '#addButton', postListItem);
     $('#listTable').on('change', '.completeCheckbox', updateTask);
+    $('#listTable').on('click', '.deleteButton', deleteTask);
 }
 
+// --------------- UPDATE TASK PUTTER ----------------------// 
 function updateTask() {
     // define value of unique list item id
     let id = $(this).data('id');
@@ -36,7 +38,32 @@ function updateTask() {
         console.log('error in PUTTER', error);
         
     })
-} // end handleCheckbox
+}
+// --------------- END UPDATE TASK PUTTER -----------------//
+
+
+// ----------------- DELETE TASK -----------------------// 
+function deleteTask(){
+    console.log('in deleteTask');
+    
+     // define value of unique list item id
+     let id = $(this).data('id');
+
+    $.ajax({
+        type: 'DELETE',
+        url: `/list/${id}`,
+    }).then(function (response){
+        console.log('DELETE response', response);
+        
+        // get latest list from database 
+        getList();
+    }).catch(function (response){
+        console.log('error in DELETE response', error);
+        
+    })
+}
+// --------------- END DELETE TASK --------------------// 
+
 
 // --------------- GETTER ----------------------//
 function getList() {
@@ -80,6 +107,7 @@ function renderList(response){
 
                 <td>${list[i].task}</td>
                 <td>${list[i].category}</td>
+                <td><button class="deleteButton">Delete</button></td>
             </tr>
             `)
         } else {
@@ -90,6 +118,7 @@ function renderList(response){
                 </td>
                 <td class="taskComplete">${list[i].task}</td>
                 <td>${list[i].category}</td>
+                <td><button class="deleteButton" data-id=${list[i].id}>Delete</button></td>
             </tr>
             `)
         }
