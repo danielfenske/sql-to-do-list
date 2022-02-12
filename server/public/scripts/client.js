@@ -47,7 +47,11 @@ function renderList(response){
     for (let i=0; i<list.length; i++) {
         el.append(`
         <tr>
-            <td>${list[i].complete}</td>
+            <td id="completedColumn">
+            ${list[i].complete}
+            <input type="checkbox" id="completeCheckbox" data-id=${list.id}>
+            </td>
+
             <td>${list[i].task}</td>
             <td>${list[i].category}</td>
         </tr>
