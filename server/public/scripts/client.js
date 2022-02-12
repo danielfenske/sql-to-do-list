@@ -81,5 +81,5 @@ function postListItem() {
     }).catch(function(error){
         console.log('Error in POSTING', error);
     })
-} 
+}
 // ----------- END POSTER -----------//
