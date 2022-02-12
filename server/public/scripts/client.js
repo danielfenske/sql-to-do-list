@@ -9,7 +9,7 @@ function onReady() {
     getList();
 
     // click listeners
-    $('#formContainer').on('click', postListItem);
+    $('#formContainer').on('click', '#addButton', postListItem);
 }
 
 // --------------- GETTER ----------------------//
@@ -30,7 +30,7 @@ function getList() {
         console.log('error in GETTER', error);
         
     })
-}
+} 
 // --------------- END GETTER ------------------//
 
 
@@ -55,3 +55,31 @@ function renderList(response){
     }
 } 
 // ----------- END RENDER FUNCTIONS -----------//
+
+
+// --------------- POSTER ----------------------//
+function postListItem() {
+    console.log('in postListItem');
+
+    let newListItem = {
+        complete: false,
+        task: $('#toDoTask').val(),
+        category: $('#categorySelection').val()
+    }
+    
+    console.log('newListItem', newListItem);
+    
+    $.ajax({
+        type: 'POST',
+        url: '/list',
+        data: newListItem,
+    }).then(function(response){
+        console.log('response', response);
+       
+        // get latest list from database
+        getList();
+    }).catch(function(error){
+        console.log('Error in POSTING', error);
+    })
+} 
+// ----------- END POSTER -----------//
