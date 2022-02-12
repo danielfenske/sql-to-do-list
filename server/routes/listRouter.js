@@ -41,6 +41,28 @@ router.post('/', (req, res) => {
             res.sendStatus(500);
         });
 });
-
-
 // --------------- END POSTER ------------------//
+
+
+// --------------- COMPLETION STATUS PUTTER ----------------------//
+router.put('/:id', (req, res) => {
+    // define request values as variables
+    let completionStatus = req.body.newCompletionStatus;
+    let idToUpdate = req.params.id;
+
+    console.log('/list PUTTER:', completionStatus, idToUpdate);
+    // define request for database
+    const query = `UPDATE "list"
+    SET complete=$1 WHERE id=$2;`;
+
+    const values = [completionStatus, idToUpdate];
+
+    pool.query(query, values)
+        .then((results) =>{
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            res.sendStatus(500);
+        })
+});
+// --------------- END COMPLETION STATUS PUTTER ------------------//
