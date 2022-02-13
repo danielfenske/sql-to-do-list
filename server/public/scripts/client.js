@@ -2,9 +2,12 @@ console.log('JS');
 
 $(document).ready(onReady);
 
+// define global variable for filtering to do list
+let selectedCategory = 'all';
+
 function onReady() {
     console.log('JQ');
-    
+
     // get list from server/database
     getList();
 
@@ -12,6 +15,47 @@ function onReady() {
     $('#formContainer').on('click', '#addButton', postListItem);
     $('#listTable').on('change', '.completeCheckbox', updateTask);
     $('#listTable').on('click', '.deleteButton', deleteTask);
+
+    // filter click listener
+    $('.dropdown-menu').on('click', '.dropdown-item', determineCategory);
+}
+
+function determineCategory() {
+    // declare variable for unique value of item selected
+    let category = $(this).data().category;
+
+    // reassign global selected category variable using switch case 
+    // (determined by grabbing data-category value)
+
+    // conditional will initiate GETTER function depending on value of selectedCategory
+    switch (category) {
+        case 'all':
+            selectedCategory = category;
+            getList();
+            break;
+        case 'chores':
+            selectedCategory = category;
+            getListCategory();
+            break;
+        case 'exercise':
+            selectedCategory = category;
+            getListCategory();
+            break;
+        case 'goals':
+            selectedCategory = category;
+            getListCategory();
+            break;
+        case 'grocery':
+            selectedCategory = category;
+            getListCategory();
+            break;
+        case 'other':
+            selectedCategory = category;
+            getListCategory();
+            break;
+        default:
+            console.log('Something is wrong');
+    }
 }
 
 // --------------- UPDATE TASK PUTTER ----------------------// 
@@ -22,44 +66,44 @@ function updateTask() {
     let checkboxStatus = $(this).data('status');
 
     console.log('in updateTask', id, checkboxStatus);
-    
+
     $.ajax({
         type: 'PUT',
         url: `/list/${id}`,
         data: {
             newCompletionStatus: !checkboxStatus
         }
-    }).then(function(response){
+    }).then(function (response) {
         console.log('PUTTER response', response);
 
         // get latest list from database
         getList();
-    }).catch(function(error){
+    }).catch(function (error) {
         console.log('error in PUTTER', error);
-        
+
     })
 }
 // --------------- END UPDATE TASK PUTTER -----------------//
 
 
 // ----------------- DELETE TASK -----------------------// 
-function deleteTask(){
+function deleteTask() {
     console.log('in deleteTask');
-    
-     // define value of unique list item id
-     let id = $(this).data('delete');
+
+    // define value of unique list item id
+    let id = $(this).data('delete');
 
     $.ajax({
         type: 'DELETE',
         url: `/list/${id}`,
-    }).then(function (response){
+    }).then(function (response) {
         console.log('DELETE response', response);
-        
+
         // get latest list from database 
         getList();
-    }).catch(function (response){
+    }).catch(function (response) {
         console.log('error in DELETE response', error);
-        
+
     })
 }
 // --------------- END DELETE TASK --------------------// 
@@ -68,36 +112,56 @@ function deleteTask(){
 // --------------- GETTER ----------------------//
 function getList() {
     console.log('in getList');
-    
+
     // setup GETTER
     $.ajax({
         type: 'GET',
         url: '/list'
-    }).then(function (response){
+    }).then(function (response) {
         console.log('GETTER response', response);
-        
+
         // trigger renderList
         renderList(response);
 
-    }).catch(function(error){
+    }).catch(function (error) {
         console.log('error in GETTER', error);
-        
+
     })
-} 
+}
 // --------------- END GETTER ------------------//
 
 
+// --------------- CATEGORY GETTER ----------------//
+function getListCategory() {
+    console.log('attempting to get:', selectedCategory);
+
+    $.ajax({
+        type: 'GET',
+        url: `/list/${selectedCategory}`
+    }).then(function(response){
+        console.log('GETTER response', response);
+        
+        // will render list of selected category
+        renderList(response);
+    }) .catch(function(error){
+        console.log('error in GETTER', error);
+        
+    })
+}
+// ------------ END CATEGORY GETTER ---------------//
+
+
 // ------------- RENDER FUNCTIONS --------------//
-function renderList(response){
+function renderList(response) {
     console.log('in renderList');
-    
+
     let list = response;
 
     let el = $('#listItems');
 
-        el.empty();
+    el.empty();
 
-    for (let i=0; i<list.length; i++) {
+    for (let i = 0; i < list.length; i++) {
         if (list[i].complete === false) {
             el.append(`
             <tr>
@@ -123,7 +187,7 @@ function renderList(response){
             `)
         }
     }
-} 
+}
 // ----------- END RENDER FUNCTIONS -----------//
 
 
@@ -136,28 +200,28 @@ function postListItem() {
         task: $('#toDoTask').val(),
         category: $('#categorySelection').val()
     }
-    
+
     console.log('newListItem', newListItem);
 
-    if(inputValidator(newListItem)) {
+    if (inputValidator(newListItem)) {
         alert("Please enter task");
         return;
     } // end input validator
-    
+
     $.ajax({
         type: 'POST',
         url: '/list',
         data: newListItem,
-    }).then(function(response){
+    }).then(function (response) {
         console.log('response', response);
 
         // clear input field
         clearInputField();
-       
+
         // get latest list from database
         getList();
 
-    }).catch(function(error){
+    }).catch(function (error) {
         console.log('Error in POSTING', error);
     })
 }
@@ -165,22 +229,22 @@ function postListItem() {
 
 
 // --------------- INPUT VALIDATOR ------------------//
-function inputValidator(newListItem){
+function inputValidator(newListItem) {
     console.log('in inputValidator');
-    
+
     if (newListItem.task === '') {
         return true;
     } else {
         return false;
     }
-} 
+}
 // -------------- END INPUT VALIDATOR ----------------//
 
 
 // --------------- CLEAR INPUT ------------------//
-function clearInputField () {
+function clearInputField() {
     console.log('in clearInputField');
-    
+
     // clear input field
     $('#toDoTask').val('');
 }
