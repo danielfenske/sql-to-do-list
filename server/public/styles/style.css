@@ -1,9 +1,5 @@
-body {
-    background-color: rgb(246, 246, 246);
-}
-
 header {
-    background-color: white;
+    background-color: rgb(246, 246, 246);
 }
 
 .taskComplete {
@@ -28,3 +24,6 @@ header {
     color: #adb5bd;
 }
 
+.currentCategory {
+    color: #d7cbee;
+}
