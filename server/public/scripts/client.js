@@ -107,7 +107,7 @@ function renderList(response){
 
                 <td>${list[i].task}</td>
                 <td>${list[i].category}</td>
-                <td><button class="deleteButton" data-delete=${list[i].id}>Delete</button></td>
+                <td><button class="deleteButton btn btn-outline-danger btn-sm" data-delete=${list[i].id}>Delete</button></td>
             </tr>
             `)
         } else {
@@ -118,7 +118,7 @@ function renderList(response){
                 </td>
                 <td class="taskComplete">${list[i].task}</td>
                 <td>${list[i].category}</td>
-                <td><button class="deleteButton" data-delete=${list[i].id}>Delete</button></td>
+                <td><button class="deleteButton btn btn-outline-danger btn-sm" data-delete=${list[i].id}>Delete</button></td>
             </tr>
             `)
         }
