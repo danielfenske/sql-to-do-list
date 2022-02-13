@@ -2,18 +2,6 @@
     box-sizing: content-box;
   }
 
-table {
-    border: 1px solid black;
-}
-
-th {
-    text-align: left;
-}
-
 .taskComplete {
     text-decoration: line-through;
-}
-
-.row div {
-    border: 1px solid silver;
 }

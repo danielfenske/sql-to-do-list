@@ -14,18 +14,33 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
         <script src="scripts/client.js"></script>
     </head>
-    <body>
-        <header><h1>DoYou List</h1></header>
+    <body class="container">
+        <header>
+            <h1>DoYou List</h1>
+        </header>
 
-        <main>
-            <section id="listContainer">
-                <h1>List</h1>
-                <table id="listTable">
-                    <thead>
+        <main class="container">
+            <section class="nav-item">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Filter List</a>
+                <div class="dropdown-menu">
+                    <a href="" class="dropdown-item">All</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">Chores</a>
+                    <a href="#" class="dropdown-item">Exercise</a>
+                    <a href="#" class="dropdown-item">Goals</a>
+                    <a href="#" class="dropdown-item">Grocery</a>
+                    <a href="#"class="dropdown-item">Other</a>
+                </div>
+            </section>
+
+            <section id="listContainer" class="container">
+                <table id="listTable" class="table table-striped">
+                    <thead class="thead-light">
                         <tr>
                             <th>Complete</th>
                             <th>Task</th>
                             <th>Category</th>
+                            <th>Remove</th>
                         </tr>
                     </thead>
 
@@ -35,16 +50,14 @@
                 </table>
             </section>
 
-            <section class="container" id="formContainer">
-                <div class="row form-group no-gutters">
-                    <div class="col-sm-12 col-md-12">
+            <section id="formContainer" class="container">
+                <div class="row justify-content-center">
+                    <div class="col-8 col-md-12 col-lg-6">
                         <label class="col-sm-12 col-form-label">Add To Do</label>
                         <input type="text" placeholder="enter to-do" id="toDoTask"  class="form-control">
                     </div>
-                </div>
 
-                <div class="row form-group no-gutters">
-                    <div class="col-sm-6 col-md-6">
+                    <div class="col-8 col-md-8 col-lg-4">
                         <label class="col-sm-12 col-form-label">Select Category</label>
                         <select id="categorySelection" class="form-control">
                             <option>Chores</option>
@@ -52,11 +65,11 @@
                             <option>Goals</option>
                             <option>Grocery</option>
                             <option>Work</option>
-                            <option>Misc.</option>
+                            <option>Other</option>
                         </select>
                     </div>
-                    
-                    <div class="col-sm-6 col-md-6 align-self-end"><button type="button" id="addButton" class="btn btn-primary form-control">Add</button></div>
+
+                    <div class="col-8 col-md-4 col-lg-2 align-self-end"><button type="button" id="addButton" class="btn btn-primary form-control">Add</button></div>
                 </div>
 
             </section>
