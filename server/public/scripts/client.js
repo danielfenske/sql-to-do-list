@@ -31,26 +31,32 @@ function determineCategory() {
     switch (category) {
         case 'all':
             selectedCategory = category;
+            $('#currentCategory').text('All').css('color', '#adb5bd');
             getList();
             break;
         case 'chores':
             selectedCategory = category;
+            $('#currentCategory').text('Chores').css('color', '#6f42c1');
             getListCategory();
             break;
         case 'exercise':
             selectedCategory = category;
+            $('#currentCategory').text('Exercise').css('color', '#dc3545');
             getListCategory();
             break;
         case 'goals':
             selectedCategory = category;
+            $('#currentCategory').text('Goals').css('color', '#ffc107');
             getListCategory();
             break;
         case 'grocery':
             selectedCategory = category;
+            $('#currentCategory').text('Grocery').css('color', '#198754');
             getListCategory();
             break;
         case 'other':
             selectedCategory = category;
+            $('#currentCategory').text('Other').css('color', '#fd7e14');
             getListCategory();
             break;
         default:
@@ -164,32 +170,32 @@ function renderList(response) {
     for (let i = 0; i < list.length; i++) {
         if (list[i].complete === false) {
             el.append(`
-            <div class="row justify-content-center align-items-center taskItem">
-                <div class="col-1">
+            <div class="p-1 row justify-content-center align-items-center">
+                <div class="col-2 col-lg-1">
                 <input type="checkbox" class="completeCheckbox" data-status=${list[i].complete} data-id=${list[i].id}>
                 </div>
 
-                <div class="col-4">
+                <div class="col-8 col-lg-4"">
                     ${list[i].task}
                 </div>
                 
-                <div class="col-1">
+                <div class="col-2 col-lg-1"">
                     <button class="deleteButton btn btn-outline-danger btn-sm" data-delete=${list[i].id}>Delete</button>
                 </div>
             </div>
             `)
         } else {
             el.append(`
-            <div class="row justify-content-center align-items-center taskItem">
-                <div class="col-1">
+            <div class="p-1 row justify-content-center align-items-center">
+                <div class="col-2 col-lg-1">
                 <input type="checkbox" class="completeCheckbox" data-status=${list[i].complete} data-id=${list[i].id} checked>
                 </div>
 
-                <div class="col-4 taskComplete">
+                <div class="col-8 col-lg-4 taskComplete">
                     ${list[i].task}
                 </div>
                 
-                <div class="col-1">
+                <div class="col-2 col-lg-1">
                     <button class="deleteButton btn btn-outline-danger btn-sm" data-delete=${list[i].id}>Delete</button>
                 </div>
             </div>

@@ -14,38 +14,42 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
         <script src="scripts/client.js"></script>
     </head>
-    <body class="container">
-        <header>
-            <h1>DoYou List</h1>
+
+    <body>    
+        <header class="container p-1">
+            <div class="row justify-content-center align-content-center">
+                <div class="col-6">
+                    <h1>DoYou List | <span id="currentCategory">All</span></h1>
+                </div>
+            </div>
         </header>
 
-        <main class="container">
-            <section class="nav-item">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Filter List</a>
-                <div class="dropdown-menu">
-                    <a href="" class="dropdown-item" data-category="all">All</a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item" data-category="chores">Chores</a>
-                    <a href="#" class="dropdown-item" data-category="exercise">Exercise</a>
-                    <a href="#" class="dropdown-item" data-category="goals">Goals</a>
-                    <a href="#" class="dropdown-item" data-category="grocery">Grocery</a>
-                    <a href="#" class="dropdown-item" data-category="other">Other</a>
+        <section class="container p-1">
+            <div class="row justify-content-center align-content-center">
+                <div class="col-6">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Filter List</a>
+                    <div class="dropdown-menu">
+                        <a href="" class="dropdown-item" data-category="all">All</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item" data-category="chores">Chores</a>
+                        <a href="#" class="dropdown-item" data-category="exercise">Exercise</a>
+                        <a href="#" class="dropdown-item" data-category="goals">Goals</a>
+                        <a href="#" class="dropdown-item" data-category="grocery">Grocery</a>
+                        <a href="#" class="dropdown-item" data-category="other">Other</a>
+                    </div>
                 </div>
-            </section>
-
-            <section id="listContainer" class="container">
-    
-            </section>
-
-            <section id="formContainer" class="container">
+            </div>
+        </section>
+            
+            <section id="formContainer" class="container p-2">
                 <div class="row justify-content-center">
 
-                    <div class="col-8 col-md-6">
-                        <label class="col-sm-12 col-form-label">Add To Do</label>
+                    <div class="col-12 col-md-12 col-lg-2">
+                        <label class="col-form-label">Add To Do</label>
                         <input type="text" placeholder="enter to-do" id="toDoTask"  class="form-control">
                     </div>
 
-                    <div class="col-8 col-md-4">
+                    <div class="col-12 col-md-8 col-lg-2">
                         <label class="col-form-label">Select Category</label>
                         <select id="categorySelection" class="form-control">
                             <option>Chores</option>
@@ -57,14 +61,14 @@
                         </select>
                     </div>
 
-                    <div class="col-8 col-md-2 align-self-end">
-                        <label class="col-sm-12 col-form-label"></label>
+                    <div class="col-12 col-md-4 col-lg-2 align-self-end">
+                        <label class="col-form-label"></label>
                         <button type="button" id="addButton" class="btn btn-primary form-control">Add</button>
-                    </div>
-                
+                    </div>       
                 </div>
-
             </section>
-        </main>
+
+            <section id="listContainer" class="container p-2">
+            </section>
     </body>
 </html>
