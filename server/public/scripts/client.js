@@ -138,6 +138,11 @@ function postListItem() {
     }
     
     console.log('newListItem', newListItem);
+
+    if(inputValidator(newListItem)) {
+        alert("Please enter task");
+        return;
+    } // end input validator
     
     $.ajax({
         type: 'POST',
@@ -145,11 +150,38 @@ function postListItem() {
         data: newListItem,
     }).then(function(response){
         console.log('response', response);
+
+        // clear input field
+        clearInputField();
        
         // get latest list from database
         getList();
+
     }).catch(function(error){
         console.log('Error in POSTING', error);
     })
 }
 // ----------- END POSTER -----------//
+
+
+// --------------- INPUT VALIDATOR ------------------//
+function inputValidator(newListItem){
+    console.log('in inputValidator');
+    
+    if (newListItem.task === '') {
+        return true;
+    } else {
+        return false;
+    }
+} 
+// -------------- END INPUT VALIDATOR ----------------//
+
+
+// --------------- CLEAR INPUT ------------------//
+function clearInputField () {
+    console.log('in clearInputField');
+    
+    // clear input field
+    $('#toDoTask').val('');
+}
+// --------------- END CLEAR INPUT ----------------//
