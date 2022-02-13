@@ -8,7 +8,7 @@ module.exports = router;
 // --------------- FULL LIST GETTER ----------------------//
 router.get('/', (req, res) => {
     // define request for database
-    let queryText = 'SELECT * FROM "list" ORDER BY "id";';
+    let queryText = 'SELECT * FROM "list" ORDER BY "id" DESC;';
 
     pool.query(queryText)
         .then(result =>{
@@ -114,6 +114,8 @@ router.post('/', (req, res) => {
 
     pool.query(queryText, values)
         .then(result =>{
+            console.log('Added new item');
+            
             res.sendStatus(201);
         })
         .catch(error => {

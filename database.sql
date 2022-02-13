@@ -17,7 +17,7 @@ VALUES (TRUE,'skim milk','Grocery'),
 -- insert goal list items into table
 INSERT INTO "list" ("complete","task","category")
 VALUES (FALSE,'daily walk','Goals'),
-(TRUE,'ready the Bible','Goals'),
+(TRUE,'read the Bible','Goals'),
 (FALSE,'exercise twice this week','Goals');
 
 -- insert chores list items into table

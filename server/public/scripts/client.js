@@ -88,8 +88,9 @@ function updateTask() {
     }).then(function (response) {
         console.log('PUTTER response', response);
 
-        // get latest list from database
-        getList();
+        // get latest list of specified category
+        getListCategory();
+        
     }).catch(function (error) {
         console.log('error in PUTTER', error);
 
@@ -111,8 +112,9 @@ function deleteTask() {
     }).then(function (response) {
         console.log('DELETE response', response);
 
-        // get latest list from database 
-        getList();
+        // get latest list of specified category
+        getListCategory();
+
     }).catch(function (response) {
         console.log('error in DELETE response', error);
 
