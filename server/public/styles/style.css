@@ -5,3 +5,16 @@
 .taskComplete {
     text-decoration: line-through;
 }
+
+.completeCheckbox {
+    width: 20px; 
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid blue;
+    appearance: none; 
+    -webkit-appearance: none; 
+}
+
+.completeCheckbox:checked {
+    background-color: blue;
+}
