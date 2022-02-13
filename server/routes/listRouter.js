@@ -5,7 +5,7 @@ const pool = require('../modules/pool');
 
 module.exports = router;
 
-// --------------- GETTER ----------------------//
+// --------------- FULL LIST GETTER ----------------------//
 router.get('/', (req, res) => {
     // define request for database
     let queryText = 'SELECT * FROM "list" ORDER BY "id";';
@@ -20,7 +20,87 @@ router.get('/', (req, res) => {
             res.sendStatus(500);
         });
 });
-// --------------- END GETTER ------------------//
+// --------------- END FULL LIST GETTER ------------------//
+
+
+
+// ----------------- CATEGORY GETTERS --------------------//
+router.get('/chores', (req, res) => {
+    // define request for database
+    let queryText = `SELECT * FROM "list" WHERE "category" = 'Chores' ORDER BY "id";`;
+
+    pool.query(queryText)
+        .then(result =>{
+            // send back results in an object
+            res.send(result.rows);
+        })
+        .catch(error => {
+            console.log('error getting list', error);
+            res.sendStatus(500);
+        });
+});
+
+router.get('/exercise', (req, res) => {
+    // define request for database
+    let queryText = `SELECT * FROM "list" WHERE "category" = 'Exercise' ORDER BY "id";`;
+
+    pool.query(queryText)
+        .then(result =>{
+            // send back results in an object
+            res.send(result.rows);
+        })
+        .catch(error => {
+            console.log('error getting list', error);
+            res.sendStatus(500);
+        });
+});
+
+router.get('/goals', (req, res) => {
+    // define request for database
+    let queryText = `SELECT * FROM "list" WHERE "category" = 'Goals' ORDER BY "id";`;
+
+    pool.query(queryText)
+        .then(result =>{
+            // send back results in an object
+            res.send(result.rows);
+        })
+        .catch(error => {
+            console.log('error getting list', error);
+            res.sendStatus(500);
+        });
+});
+
+router.get('/grocery', (req, res) => {
+    // define request for database
+    let queryText = `SELECT * FROM "list" WHERE "category" = 'Grocery' ORDER BY "id";`;
+
+    pool.query(queryText)
+        .then(result =>{
+            // send back results in an object
+            res.send(result.rows);
+        })
+        .catch(error => {
+            console.log('error getting list', error);
+            res.sendStatus(500);
+        });
+});
+
+router.get('/other', (req, res) => {
+    // define request for database
+    let queryText = `SELECT * FROM "list" WHERE "category" = 'Other' ORDER BY "id";`;
+
+    pool.query(queryText)
+        .then(result =>{
+            // send back results in an object
+            res.send(result.rows);
+        })
+        .catch(error => {
+            console.log('error getting list', error);
+            res.sendStatus(500);
+        });
+});
+// ----------------- END CATEGORY GETTERS ------------------//
+
 
 
 // --------------- POSTER ----------------------//
