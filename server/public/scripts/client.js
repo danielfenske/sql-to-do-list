@@ -13,8 +13,8 @@ function onReady() {
 
     // click listeners
     $('#formContainer').on('click', '#addButton', postListItem);
-    $('#listTable').on('change', '.completeCheckbox', updateTask);
-    $('#listTable').on('click', '.deleteButton', deleteTask);
+    $('#listContainer').on('change', '.completeCheckbox', updateTask);
+    $('#listContainer').on('click', '.deleteButton', deleteTask);
 
     // filter click listener
     $('.dropdown-menu').on('click', '.dropdown-item', determineCategory);
@@ -157,33 +157,42 @@ function renderList(response) {
 
     let list = response;
 
-    let el = $('#listItems');
+    let el = $('#listContainer');
 
     el.empty();
 
     for (let i = 0; i < list.length; i++) {
         if (list[i].complete === false) {
             el.append(`
-            <tr>
-                <td id="completedColumn">
+            <div class="row justify-content-center align-items-center taskItem">
+                <div class="col-1">
                 <input type="checkbox" class="completeCheckbox" data-status=${list[i].complete} data-id=${list[i].id}>
-                </td>
+                </div>
 
-                <td>${list[i].task}</td>
-                <td>${list[i].category}</td>
-                <td><button class="deleteButton btn btn-outline-danger btn-sm" data-delete=${list[i].id}>Delete</button></td>
-            </tr>
+                <div class="col-4">
+                    ${list[i].task}
+                </div>
+                
+                <div class="col-1">
+                    <button class="deleteButton btn btn-outline-danger btn-sm" data-delete=${list[i].id}>Delete</button>
+                </div>
+            </div>
             `)
         } else {
             el.append(`
-            <tr>
-                <td id="completedColumn">
+            <div class="row justify-content-center align-items-center taskItem">
+                <div class="col-1">
                 <input type="checkbox" class="completeCheckbox" data-status=${list[i].complete} data-id=${list[i].id} checked>
-                </td>
-                <td class="taskComplete">${list[i].task}</td>
-                <td>${list[i].category}</td>
-                <td><button class="deleteButton btn btn-outline-danger btn-sm" data-delete=${list[i].id}>Delete</button></td>
-            </tr>
+                </div>
+
+                <div class="col-4 taskComplete">
+                    ${list[i].task}
+                </div>
+                
+                <div class="col-1">
+                    <button class="deleteButton btn btn-outline-danger btn-sm" data-delete=${list[i].id}>Delete</button>
+                </div>
+            </div>
             `)
         }
     }
