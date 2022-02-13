@@ -1,3 +1,11 @@
+body {
+    background-color: rgb(246, 246, 246);
+}
+
+header {
+    background-color: white;
+}
+
 .taskComplete {
     text-decoration: line-through;
 }
