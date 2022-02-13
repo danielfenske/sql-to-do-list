@@ -32,31 +32,37 @@ function determineCategory() {
         case 'all':
             selectedCategory = category;
             $('#currentCategory').text('All').css('color', '#adb5bd');
+            $('header').css('background-color', 'rgb(246, 246, 246)');
             getList();
             break;
         case 'chores':
             selectedCategory = category;
             $('#currentCategory').text('Chores').css('color', '#6f42c1');
+            $('header').css('background-color', '#efe7f7');
             getListCategory();
             break;
         case 'exercise':
             selectedCategory = category;
             $('#currentCategory').text('Exercise').css('color', '#dc3545');
+            $('header').css('background-color', '#ffebeb');
             getListCategory();
             break;
         case 'goals':
             selectedCategory = category;
             $('#currentCategory').text('Goals').css('color', '#ffc107');
+            $('header').css('background-color', '#ffffeb');
             getListCategory();
             break;
         case 'grocery':
             selectedCategory = category;
             $('#currentCategory').text('Grocery').css('color', '#198754');
+            $('header').css('background-color', '#ebffeb');
             getListCategory();
             break;
         case 'other':
             selectedCategory = category;
             $('#currentCategory').text('Other').css('color', '#fd7e14');
+            $('header').css('background-color', '#fff8eb');
             getListCategory();
             break;
         default:
