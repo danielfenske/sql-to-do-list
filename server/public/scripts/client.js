@@ -241,8 +241,8 @@ function postListItem() {
         // clear input field
         clearInputField();
 
-        // get latest list from database
-        getList();
+        // get latest list of specified category
+        getListCategory();
 
     }).catch(function (error) {
         console.log('Error in POSTING', error);
