@@ -25,9 +25,24 @@ router.get('/', (req, res) => {
 
 
 // ----------------- CATEGORY GETTERS --------------------//
+router.get('/all', (req, res) => {
+    // define request for database
+    let queryText = `SELECT * FROM "list" ORDER BY "id" DESC;`;
+
+    pool.query(queryText)
+        .then(result =>{
+            // send back results in an object
+            res.send(result.rows);
+        })
+        .catch(error => {
+            console.log('error getting list', error);
+            res.sendStatus(500);
+        });
+});
+
 router.get('/chores', (req, res) => {
     // define request for database
-    let queryText = `SELECT * FROM "list" WHERE "category" = 'Chores' ORDER BY "id";`;
+    let queryText = `SELECT * FROM "list" WHERE "category" = 'Chores' ORDER BY "id" DESC;`;
 
     pool.query(queryText)
         .then(result =>{
@@ -42,7 +57,7 @@ router.get('/chores', (req, res) => {
 
 router.get('/exercise', (req, res) => {
     // define request for database
-    let queryText = `SELECT * FROM "list" WHERE "category" = 'Exercise' ORDER BY "id";`;
+    let queryText = `SELECT * FROM "list" WHERE "category" = 'Exercise' ORDER BY "id" DESC;`;
 
     pool.query(queryText)
         .then(result =>{
@@ -57,7 +72,7 @@ router.get('/exercise', (req, res) => {
 
 router.get('/goals', (req, res) => {
     // define request for database
-    let queryText = `SELECT * FROM "list" WHERE "category" = 'Goals' ORDER BY "id";`;
+    let queryText = `SELECT * FROM "list" WHERE "category" = 'Goals' ORDER BY "id" DESC;`;
 
     pool.query(queryText)
         .then(result =>{
@@ -72,7 +87,7 @@ router.get('/goals', (req, res) => {
 
 router.get('/grocery', (req, res) => {
     // define request for database
-    let queryText = `SELECT * FROM "list" WHERE "category" = 'Grocery' ORDER BY "id";`;
+    let queryText = `SELECT * FROM "list" WHERE "category" = 'Grocery' ORDER BY "id" DESC;`;
 
     pool.query(queryText)
         .then(result =>{
@@ -87,7 +102,7 @@ router.get('/grocery', (req, res) => {
 
 router.get('/other', (req, res) => {
     // define request for database
-    let queryText = `SELECT * FROM "list" WHERE "category" = 'Other' ORDER BY "id";`;
+    let queryText = `SELECT * FROM "list" WHERE "category" = 'Other' ORDER BY "id" DESC;`;
 
     pool.query(queryText)
         .then(result =>{
