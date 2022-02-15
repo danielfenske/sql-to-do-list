@@ -183,7 +183,7 @@ function renderList(response) {
                 <input type="checkbox" class="completeCheckbox" data-status=${list[i].complete} data-id=${list[i].id}>
                 </div>
 
-                <div class="col-6 col-lg-4"">
+                <div class="col-8 col-lg-4"">
                     ${list[i].task}
                 </div>
                 
@@ -199,7 +199,7 @@ function renderList(response) {
                 <input type="checkbox" class="completeCheckbox" data-status=${list[i].complete} data-id=${list[i].id} checked>
                 </div>
 
-                <div class="col-6 col-lg-4 taskComplete">
+                <div class="col-8 col-lg-4 taskComplete">
                     ${list[i].task}
                 </div>
                 
