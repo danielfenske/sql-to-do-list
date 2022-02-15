@@ -100,6 +100,21 @@ router.get('/grocery', (req, res) => {
         });
 });
 
+router.get('/work', (req, res) => {
+    // define request for database
+    let queryText = `SELECT * FROM "list" WHERE "category" = 'Work' ORDER BY "id" DESC;`;
+
+    pool.query(queryText)
+        .then(result =>{
+            // send back results in an object
+            res.send(result.rows);
+        })
+        .catch(error => {
+            console.log('error getting list', error);
+            res.sendStatus(500);
+        });
+});
+
 router.get('/other', (req, res) => {
     // define request for database
     let queryText = `SELECT * FROM "list" WHERE "category" = 'Other' ORDER BY "id" DESC;`;

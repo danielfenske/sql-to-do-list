@@ -32,7 +32,7 @@ function determineCategory() {
         case 'all':
             selectedCategory = category;
             $('#currentCategory').text('All').css('color', '#adb5bd');
-            $('header').css('background-color', 'rgb(246, 246, 246)');
+            $('header').css('background-color', '#F6F7F8');
             getList();
             break;
         case 'chores':
@@ -58,6 +58,14 @@ function determineCategory() {
             $('#currentCategory').text('Grocery').css('color', '#198754');
             $('header').css('background-color', '#ebffeb');
             getListCategory();
+            break;
+        case 'work':
+            selectedCategory = category;
+            $('#currentCategory').text('Work').css('color', '#0d6efd');
+            $('header').css('background-color', '#E6F0FE');
+            getListCategory();
+            console.log('selectedCateogry', selectedCategory);
+            
             break;
         case 'other':
             selectedCategory = category;
