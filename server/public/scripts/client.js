@@ -186,33 +186,29 @@ function renderList(response) {
     for (let i = 0; i < list.length; i++) {
         if (list[i].complete === false) {
             el.append(`
-            <div class="p-1 row justify-content-center align-items-center">
-                <div class="col-2 col-lg-1">
-                <input type="checkbox" class="completeCheckbox" data-status=${list[i].complete} data-id=${list[i].id}>
-                </div>
+            <div class="mt-2 row taskRow">
+                <div class="col-2 col-md-3">
+                    <input class="completeCheckbox" type="checkbox" data-status=${list[i].complete} data-id=${list[i].id}>
+                </div>   
 
-                <div class="col-8 col-lg-4"">
-                    ${list[i].task}
-                </div>
-                
-                <div class="col-2 col-lg-1"">
-                    <button class="deleteButton btn btn-outline-danger btn-sm" data-delete=${list[i].id}>Delete</button>
+                <div class="col-7 col-md-6">${list[i].task}</div>
+
+                <div class="col-3 col-md-3">
+                    <button class="alert-heading deleteButton btn btn-outline-danger btn-sm" data-delete=${list[i].id}>Delete</button>
                 </div>
             </div>
             `)
         } else {
             el.append(`
-            <div class="p-1 row justify-content-center align-items-center">
-                <div class="col-2 col-lg-1">
-                <input type="checkbox" class="completeCheckbox" data-status=${list[i].complete} data-id=${list[i].id} checked>
+            <div class="mt-2 row taskRow">
+                <div class="col-2 col-md-3">
+                    <input class="completeCheckbox" type="checkbox" data-status=${list[i].complete} data-id=${list[i].id} checked>
                 </div>
 
-                <div class="col-8 col-lg-4 taskComplete">
-                    ${list[i].task}
-                </div>
-                
-                <div class="col-2 col-lg-1">
-                    <button class="deleteButton btn btn-outline-danger btn-sm" data-delete=${list[i].id}>Delete</button>
+                <div class="col-7 col-md-6 taskComplete">${list[i].task}</div>
+            
+                <div class="col-3 col-md-3">
+                <button class="alert-heading deleteButton btn btn-outline-danger btn-sm" data-delete=${list[i].id}>Delete</button>
                 </div>
             </div>
             `)

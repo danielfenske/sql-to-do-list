@@ -15,47 +15,41 @@
         <script src="scripts/client.js"></script>
     </head>
 
-    <body>
+    <body class="d-flex flex-column">
 
-        <header>
-            <div class="container p-1">
-                <div class="row justify-content-center align-content-center">
-                    <div class="col-6">
-                        <h1>DoYou List</h1>
-                        <h4><span id="currentCategory">All</span></h4>
-                    </div>
+        <header class="mw-100 pt-3 container-fluid d-flex justify-content-center align-items-center flex-column">
+            <div class="row">
+                <div class="col-12">
+                    <h1>DoYou List</h1>
+                    <h4><span id="currentCategory">All</span></h4>
                 </div>
             </div>
 
-            <section class="container p-1">
-                <div class="row justify-content-center align-content-center">
-                    <div class="col-6">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Filter List</a>
-                        <div class="dropdown-menu">
-                            <a href="" class="dropdown-item" data-category="all">All</a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item" data-category="chores">Chores</a>
-                            <a href="#" class="dropdown-item" data-category="exercise">Exercise</a>
-                            <a href="#" class="dropdown-item" data-category="goals">Goals</a>
-                            <a href="#" class="dropdown-item" data-category="grocery">Grocery</a>
-                            <a href="#" class="dropdown-item" data-category="work">Work</a>
-                            <a href="#" class="dropdown-item" data-category="other">Other</a>
-                        </div>
+            <div class="row">
+                <div class="col-12">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Filter List</a>
+                    <div class="dropdown-menu">
+                        <a href="" class="dropdown-item" data-category="all">All</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item" data-category="chores">Chores</a>
+                        <a href="#" class="dropdown-item" data-category="exercise">Exercise</a>
+                        <a href="#" class="dropdown-item" data-category="goals">Goals</a>
+                        <a href="#" class="dropdown-item" data-category="grocery">Grocery</a>
+                        <a href="#" class="dropdown-item" data-category="work">Work</a>
+                        <a href="#" class="dropdown-item" data-category="other">Other</a>
                     </div>
                 </div>
-            </section>
+            </div>
         </header>  
         
-        <main>
-            <div id="formContainer" class="container p-2">
-                <div class="row justify-content-center">
-
-                    <div class="col-12 col-md-12 col-lg-2">
+            <div id="formContainer" class="mt-3 container d-flex justify-content-between align-content-center">
+                <div class="row">
+                    <div class="col-12 col-md-12 col-lg-5">
                         <label class="col-form-label">Add To Do</label>
                         <input type="text" placeholder="enter to-do" id="toDoTask"  class="form-control">
                     </div>
 
-                    <div class="col-12 col-md-8 col-lg-2">
+                    <div class="col-12 col-md-8 col-lg-4">
                         <label class="col-form-label">Select Category</label>
                         <select id="categorySelection" class="form-control">
                             <option>Chores</option>
@@ -67,16 +61,14 @@
                         </select>
                     </div>
 
-                    <div class="col-12 col-md-4 col-lg-2 align-self-end">
-                        <label class="col-form-label"></label>
+                    <div class="mt-3 col-12 col-md-4 col-lg-3 align-self-end">
                         <button type="button" id="addButton" class="btn btn-primary form-control">Add</button>
                     </div>       
                 </div>
             </div>
 
-            <div id="listContainer" class="container p-2">
+            <div id="listContainer" class="mt-3 container d-flex justify-content-between align-content-center flex-column">
             </div>
-        </main>
         
     </body>
 </html>
