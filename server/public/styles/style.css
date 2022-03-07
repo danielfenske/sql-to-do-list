@@ -3,13 +3,13 @@
   padding: 0;
 }
 
-#formContainer,
-#listContainer {
-  max-width: 450px;
-}
-
 header {
   background-color: #f6f7f8;
+}
+
+#formContainer,
+#listContainer {
+  max-width: 550px;
 }
 
 .taskComplete {
@@ -30,6 +30,13 @@ header {
   background-color: #0d6efd;
 }
 
+.columnContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 button {
   background: none;
   color: inherit;
@@ -43,6 +50,10 @@ button {
 .fa-trash-can {
   color: #dc3545;
 }
+
+.fa-trash-can:hover {
+    color: blue;
+  }
 
 #currentCategory {
   color: #adb5bd;
