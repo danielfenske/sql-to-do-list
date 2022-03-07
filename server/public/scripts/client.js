@@ -65,7 +65,7 @@ function determineCategory() {
             $('header').css('background-color', '#E6F0FE');
             getListCategory();
             console.log('selectedCateogry', selectedCategory);
-            
+
             break;
         case 'other':
             selectedCategory = category;
@@ -98,7 +98,7 @@ function updateTask() {
 
         // get latest list of specified category
         getListCategory();
-        
+
     }).catch(function (error) {
         console.log('error in PUTTER', error);
 
@@ -160,14 +160,14 @@ function getListCategory() {
     $.ajax({
         type: 'GET',
         url: `/list/${selectedCategory}`
-    }).then(function(response){
+    }).then(function (response) {
         console.log('GETTER response', response);
-        
+
         // will render list of selected category
         renderList(response);
-    }) .catch(function(error){
+    }).catch(function (error) {
         console.log('error in GETTER', error);
-        
+
     })
 }
 // ------------ END CATEGORY GETTER ---------------//
@@ -194,7 +194,9 @@ function renderList(response) {
                 <div class="col-7 col-md-6">${list[i].task}</div>
 
                 <div class="col-3 col-md-3">
-                    <button class="alert-heading deleteButton btn btn-outline-danger btn-sm" data-delete=${list[i].id}>Delete</button>
+                <button class="deleteButton" data-delete=${list[i].id}>
+                    <i class="fa-regular fa-lg fa-trash-can"></i>
+                </button>
                 </div>
             </div>
             `)
@@ -208,7 +210,9 @@ function renderList(response) {
                 <div class="col-7 col-md-6 taskComplete">${list[i].task}</div>
             
                 <div class="col-3 col-md-3">
-                <button class="alert-heading deleteButton btn btn-outline-danger btn-sm" data-delete=${list[i].id}>Delete</button>
+                <button class="deleteButton" data-delete=${list[i].id}>
+                    <i class="fa-regular fa-lg fa-trash-can"></i>
+                </button>
                 </div>
             </div>
             `)
