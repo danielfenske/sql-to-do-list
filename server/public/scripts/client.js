@@ -187,32 +187,32 @@ function renderList(response) {
         if (list[i].complete === false) {
             el.append(`
             <div class="mt-2 row">
-                <div class="col-2 col-md-3 columnContainer">
+                <div class="col-2 col-md-3 d-flex justify-content-start align-items-center">
                     <input class="completeCheckbox" type="checkbox" data-status=${list[i].complete} data-id=${list[i].id}>
                 </div>   
 
-                <div class="col-7 col-md-6 columnContainer">${list[i].task}</div>
+                <div class="col-8 col-md-6 d-flex justify-content-center align-items-center text-center">${list[i].task}</div>
 
-                <div class="col-3 col-md-3 columnContainer">
-                <button class="deleteButton" data-delete=${list[i].id}>
-                    <i class="fa-regular fa-lg fa-trash-can"></i>
-                </button>
+                <div class="col-2 col-md-3 d-flex justify-content-end align-items-center">
+                    <button class="deleteButton" data-delete=${list[i].id}>
+                        <i class="fa-regular fa-lg fa-trash-can"></i>
+                    </button>
                 </div>
             </div>
             `)
         } else {
             el.append(`
             <div class="mt-2 row">
-                <div class="col-2 col-md-3 columnContainer">
+                <div class="col-2 col-md-3 d-flex justify-content-start align-items-center">
                     <input class="completeCheckbox" type="checkbox" data-status=${list[i].complete} data-id=${list[i].id} checked>
                 </div>
 
-                <div class="col-7 col-md-6 taskComplete columnContainer">${list[i].task}</div>
+                <div class="col-8 col-md-6 taskComplete d-flex justify-content-center align-items-center text-center">${list[i].task}</div>
             
-                <div class="col-3 col-md-3 columnContainer">
-                <button class="deleteButton" data-delete=${list[i].id}>
-                    <i class="fa-regular fa-lg fa-trash-can"></i>
-                </button>
+                <div class="col-2 col-md-3 d-flex justify-content-end align-items-center">
+                    <button class="deleteButton" data-delete=${list[i].id}>
+                        <i class="fa-regular fa-lg fa-trash-can"></i>
+                    </button>
                 </div>
             </div>
             `)

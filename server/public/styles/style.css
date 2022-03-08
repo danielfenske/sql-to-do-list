@@ -7,13 +7,17 @@ header {
   background-color: #f6f7f8;
 }
 
-#formContainer,
-#listContainer {
-  max-width: 550px;
+#currentCategory {
+  color: #adb5bd;
 }
 
-.taskComplete {
-  text-decoration: line-through;
+.currentCategory {
+  color: #d7cbee;
+}
+
+#formContainer,
+#listContainer {
+  max-width: 800px;
 }
 
 .completeCheckbox {
@@ -30,11 +34,8 @@ header {
   background-color: #0d6efd;
 }
 
-.columnContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+.taskComplete {
+  text-decoration: line-through;
 }
 
 button {
@@ -52,13 +53,5 @@ button {
 }
 
 .fa-trash-can:hover {
-    color: blue;
-  }
-
-#currentCategory {
-  color: #adb5bd;
-}
-
-.currentCategory {
-  color: #d7cbee;
+  color: #0d6efd;
 }
