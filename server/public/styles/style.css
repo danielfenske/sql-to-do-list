@@ -1,29 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 header {
-    background-color: #F6F7F8;
-}
-
-.taskComplete {
-    text-decoration: line-through;
-}
-
-.completeCheckbox {
-    width: 20px; 
-    height: 20px;
-    border-radius: 50%;
-    border: 1px solid #dc3545;
-    appearance: none; 
-    -webkit-appearance: none; 
-}
-
-.completeCheckbox:checked {
-    border: 1px solid #0d6efd;
-    background-color: #0d6efd;
+  background-color: #f6f7f8;
 }
 
 #currentCategory {
-    color: #adb5bd;
+  color: #adb5bd;
 }
 
-.currentCategory {
-    color: #d7cbee;
+#formContainer,
+#listContainer {
+  max-width: 600px;
+}
+
+.completeCheckbox {
+  width: 1.25rem;
+  height: 1.25rem;
+} 
+
+.taskComplete {
+  text-decoration: line-through;
+}
+
+button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.fa-trash-can {
+  color: #6e7379;
+}
+
+.fa-trash-can:hover {
+  color: #2e3031;
 }

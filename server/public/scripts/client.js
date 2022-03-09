@@ -65,7 +65,7 @@ function determineCategory() {
             $('header').css('background-color', '#E6F0FE');
             getListCategory();
             console.log('selectedCateogry', selectedCategory);
-            
+
             break;
         case 'other':
             selectedCategory = category;
@@ -98,7 +98,7 @@ function updateTask() {
 
         // get latest list of specified category
         getListCategory();
-        
+
     }).catch(function (error) {
         console.log('error in PUTTER', error);
 
@@ -160,14 +160,14 @@ function getListCategory() {
     $.ajax({
         type: 'GET',
         url: `/list/${selectedCategory}`
-    }).then(function(response){
+    }).then(function (response) {
         console.log('GETTER response', response);
-        
+
         // will render list of selected category
         renderList(response);
-    }) .catch(function(error){
+    }).catch(function (error) {
         console.log('error in GETTER', error);
-        
+
     })
 }
 // ------------ END CATEGORY GETTER ---------------//
@@ -186,33 +186,33 @@ function renderList(response) {
     for (let i = 0; i < list.length; i++) {
         if (list[i].complete === false) {
             el.append(`
-            <div class="p-1 row justify-content-center align-items-center">
-                <div class="col-2 col-lg-1">
-                <input type="checkbox" class="completeCheckbox" data-status=${list[i].complete} data-id=${list[i].id}>
-                </div>
+            <div class="mt-2 pl-2 pr-2 row">
+                <div class="col-2 col-md-3 d-flex justify-content-start align-items-center">
+                    <input class="completeCheckbox" type="checkbox" data-status=${list[i].complete} data-id=${list[i].id}>
+                </div>   
 
-                <div class="col-8 col-lg-4"">
-                    ${list[i].task}
-                </div>
-                
-                <div class="col-2 col-lg-1"">
-                    <button class="deleteButton btn btn-outline-danger btn-sm" data-delete=${list[i].id}>Delete</button>
+                <div class="col-8 col-md-6 d-flex justify-content-center align-items-center text-center">${list[i].task}</div>
+
+                <div class="col-2 col-md-3 d-flex justify-content-end align-items-center">
+                    <button class="deleteButton" data-delete=${list[i].id}>
+                        <i class="fa-regular fa-lg fa-trash-can"></i>
+                    </button>
                 </div>
             </div>
             `)
         } else {
             el.append(`
-            <div class="p-1 row justify-content-center align-items-center">
-                <div class="col-2 col-lg-1">
-                <input type="checkbox" class="completeCheckbox" data-status=${list[i].complete} data-id=${list[i].id} checked>
+            <div class="mt-2 pl-2 pr-2 row">
+                <div class="col-2 col-md-3 d-flex justify-content-start align-items-center">
+                    <input class="completeCheckbox" type="checkbox" data-status=${list[i].complete} data-id=${list[i].id} checked>
                 </div>
 
-                <div class="col-8 col-lg-4 taskComplete">
-                    ${list[i].task}
-                </div>
-                
-                <div class="col-2 col-lg-1">
-                    <button class="deleteButton btn btn-outline-danger btn-sm" data-delete=${list[i].id}>Delete</button>
+                <div class="col-8 col-md-6 taskComplete d-flex justify-content-center align-items-center text-center">${list[i].task}</div>
+            
+                <div class="col-2 col-md-3 d-flex justify-content-end align-items-center">
+                    <button class="deleteButton" data-delete=${list[i].id}>
+                        <i class="fa-regular fa-lg fa-trash-can"></i>
+                    </button>
                 </div>
             </div>
             `)
