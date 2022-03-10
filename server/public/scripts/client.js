@@ -9,7 +9,7 @@ function onReady() {
     console.log('JQ');
 
     // get list from server/database
-    getList();
+    getListCategory();
 
     // click listeners
     $('#formContainer').on('click', '#addButton', postListItem);
@@ -18,6 +18,16 @@ function onReady() {
 
     // filter click listener
     $('.dropdown-menu').on('click', '.dropdown-item', determineCategory);
+}
+
+// changes which value is selected to match user's view
+// why? So task added will fall in same category as current view
+function changeSelector() {
+    console.log('selectedCategory', selectedCategory);
+    
+    $("option:selected").removeAttr('selected');
+    $(`#${selectedCategory}`).attr('selected', 'selected');
+    $(`#${selectedCategory}`).text(`${selectedCategory}`);
 }
 
 function determineCategory() {
@@ -33,45 +43,51 @@ function determineCategory() {
             selectedCategory = category;
             $('#currentCategory').text('All').css('color', '#adb5bd');
             $('header').css('background-color', '#F6F7F8');
-            getList();
+            // getList();
+            getListCategory();
+            changeSelector();
             break;
         case 'chores':
             selectedCategory = category;
             $('#currentCategory').text('Chores').css('color', '#6f42c1');
             $('header').css('background-color', '#efe7f7');
             getListCategory();
+            changeSelector();
             break;
         case 'exercise':
             selectedCategory = category;
             $('#currentCategory').text('Exercise').css('color', '#dc3545');
             $('header').css('background-color', '#ffebeb');
             getListCategory();
+            changeSelector();
             break;
         case 'goals':
             selectedCategory = category;
             $('#currentCategory').text('Goals').css('color', '#ffc107');
             $('header').css('background-color', '#ffffeb');
             getListCategory();
+            changeSelector();
             break;
         case 'grocery':
             selectedCategory = category;
             $('#currentCategory').text('Grocery').css('color', '#198754');
             $('header').css('background-color', '#ebffeb');
             getListCategory();
+            changeSelector();
             break;
         case 'work':
             selectedCategory = category;
             $('#currentCategory').text('Work').css('color', '#0d6efd');
             $('header').css('background-color', '#E6F0FE');
             getListCategory();
-            console.log('selectedCateogry', selectedCategory);
-
+            changeSelector();
             break;
         case 'other':
             selectedCategory = category;
             $('#currentCategory').text('Other').css('color', '#fd7e14');
             $('header').css('background-color', '#fff8eb');
             getListCategory();
+            changeSelector();
             break;
         default:
             console.log('Something is wrong');
@@ -129,28 +145,6 @@ function deleteTask() {
     })
 }
 // --------------- END DELETE TASK --------------------// 
-
-
-// --------------- GETTER ----------------------//
-function getList() {
-    console.log('in getList');
-
-    // setup GETTER
-    $.ajax({
-        type: 'GET',
-        url: '/list'
-    }).then(function (response) {
-        console.log('GETTER response', response);
-
-        // trigger renderList
-        renderList(response);
-
-    }).catch(function (error) {
-        console.log('error in GETTER', error);
-
-    })
-}
-// --------------- END GETTER ------------------//
 
 
 // --------------- CATEGORY GETTER ----------------//
