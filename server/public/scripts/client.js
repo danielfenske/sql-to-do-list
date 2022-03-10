@@ -20,6 +20,11 @@ function onReady() {
     $('.dropdown-menu').on('click', '.dropdown-item', determineCategory);
 }
 
+function changeSelector() {
+    $("option").removeAttr('selected');
+    $(`#${selectedCategory}`).attr('selected', 'selected');
+}
+
 function determineCategory() {
     // declare variable for unique value of item selected
     let category = $(this).data().category;
@@ -40,38 +45,42 @@ function determineCategory() {
             $('#currentCategory').text('Chores').css('color', '#6f42c1');
             $('header').css('background-color', '#efe7f7');
             getListCategory();
+            changeSelector();
             break;
         case 'exercise':
             selectedCategory = category;
             $('#currentCategory').text('Exercise').css('color', '#dc3545');
             $('header').css('background-color', '#ffebeb');
             getListCategory();
+            changeSelector();
             break;
         case 'goals':
             selectedCategory = category;
             $('#currentCategory').text('Goals').css('color', '#ffc107');
             $('header').css('background-color', '#ffffeb');
             getListCategory();
+            changeSelector();
             break;
         case 'grocery':
             selectedCategory = category;
             $('#currentCategory').text('Grocery').css('color', '#198754');
             $('header').css('background-color', '#ebffeb');
             getListCategory();
+            changeSelector();
             break;
         case 'work':
             selectedCategory = category;
             $('#currentCategory').text('Work').css('color', '#0d6efd');
             $('header').css('background-color', '#E6F0FE');
             getListCategory();
-            console.log('selectedCateogry', selectedCategory);
-
+            changeSelector();
             break;
         case 'other':
             selectedCategory = category;
             $('#currentCategory').text('Other').css('color', '#fd7e14');
             $('header').css('background-color', '#fff8eb');
             getListCategory();
+            changeSelector();
             break;
         default:
             console.log('Something is wrong');
