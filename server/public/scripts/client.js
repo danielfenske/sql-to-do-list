@@ -9,7 +9,7 @@ function onReady() {
     console.log('JQ');
 
     // get list from server/database
-    getList();
+    getListCategory();
 
     // click listeners
     $('#formContainer').on('click', '#addButton', postListItem);
@@ -20,9 +20,14 @@ function onReady() {
     $('.dropdown-menu').on('click', '.dropdown-item', determineCategory);
 }
 
+// changes which value is selected to match user's view
+// why? So task added will fall in same category as current view
 function changeSelector() {
-    $("option").removeAttr('selected');
+    console.log('selectedCategory', selectedCategory);
+    
+    $("option:selected").removeAttr('selected');
     $(`#${selectedCategory}`).attr('selected', 'selected');
+    $(`#${selectedCategory}`).text(`${selectedCategory}`);
 }
 
 function determineCategory() {
@@ -38,7 +43,9 @@ function determineCategory() {
             selectedCategory = category;
             $('#currentCategory').text('All').css('color', '#adb5bd');
             $('header').css('background-color', '#F6F7F8');
-            getList();
+            // getList();
+            getListCategory();
+            changeSelector();
             break;
         case 'chores':
             selectedCategory = category;
@@ -138,28 +145,6 @@ function deleteTask() {
     })
 }
 // --------------- END DELETE TASK --------------------// 
-
-
-// --------------- GETTER ----------------------//
-function getList() {
-    console.log('in getList');
-
-    // setup GETTER
-    $.ajax({
-        type: 'GET',
-        url: '/list'
-    }).then(function (response) {
-        console.log('GETTER response', response);
-
-        // trigger renderList
-        renderList(response);
-
-    }).catch(function (error) {
-        console.log('error in GETTER', error);
-
-    })
-}
-// --------------- END GETTER ------------------//
 
 
 // --------------- CATEGORY GETTER ----------------//

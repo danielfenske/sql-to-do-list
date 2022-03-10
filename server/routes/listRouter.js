@@ -5,13 +5,28 @@ const pool = require('../modules/pool');
 
 module.exports = router;
 
-// --------------- FULL LIST GETTER ----------------------//
-router.get('/', (req, res) => {
+// ----------------- CATEGORY GETTER --------------------//
+router.get('/:category', (req, res) => {
     // define request for database
-    let queryText = 'SELECT * FROM "list" ORDER BY "id" DESC;';
+    let queryText;
 
-    pool.query(queryText)
-        .then(result =>{
+    if (req.params.category === 'all') {
+        queryText = `SELECT * FROM "list" ORDER BY "id" DESC;`;
+
+        pool.query(queryText)
+            .then(result =>{
+                // send back results in an object
+                res.send(result.rows);
+            })
+            .catch(error => {
+                console.log('error getting list', error);
+                res.sendStatus(500);
+            });
+    } else {
+        queryText = `SELECT * FROM "list" WHERE "category" = $1 ORDER BY "id" DESC;`;
+
+        pool.query(queryText, [req.params.category])
+        .then(result => {
             // send back results in an object
             res.send(result.rows);
         })
@@ -19,133 +34,25 @@ router.get('/', (req, res) => {
             console.log('error getting list', error);
             res.sendStatus(500);
         });
+    }
 });
-// --------------- END FULL LIST GETTER ------------------//
-
-
-
-// ----------------- CATEGORY GETTERS --------------------//
-router.get('/all', (req, res) => {
-    // define request for database
-    let queryText = `SELECT * FROM "list" ORDER BY "id" DESC;`;
-
-    pool.query(queryText)
-        .then(result =>{
-            // send back results in an object
-            res.send(result.rows);
-        })
-        .catch(error => {
-            console.log('error getting list', error);
-            res.sendStatus(500);
-        });
-});
-
-router.get('/chores', (req, res) => {
-    // define request for database
-    let queryText = `SELECT * FROM "list" WHERE "category" = 'Chores' ORDER BY "id" DESC;`;
-
-    pool.query(queryText)
-        .then(result =>{
-            // send back results in an object
-            res.send(result.rows);
-        })
-        .catch(error => {
-            console.log('error getting list', error);
-            res.sendStatus(500);
-        });
-});
-
-router.get('/exercise', (req, res) => {
-    // define request for database
-    let queryText = `SELECT * FROM "list" WHERE "category" = 'Exercise' ORDER BY "id" DESC;`;
-
-    pool.query(queryText)
-        .then(result =>{
-            // send back results in an object
-            res.send(result.rows);
-        })
-        .catch(error => {
-            console.log('error getting list', error);
-            res.sendStatus(500);
-        });
-});
-
-router.get('/goals', (req, res) => {
-    // define request for database
-    let queryText = `SELECT * FROM "list" WHERE "category" = 'Goals' ORDER BY "id" DESC;`;
-
-    pool.query(queryText)
-        .then(result =>{
-            // send back results in an object
-            res.send(result.rows);
-        })
-        .catch(error => {
-            console.log('error getting list', error);
-            res.sendStatus(500);
-        });
-});
-
-router.get('/grocery', (req, res) => {
-    // define request for database
-    let queryText = `SELECT * FROM "list" WHERE "category" = 'Grocery' ORDER BY "id" DESC;`;
-
-    pool.query(queryText)
-        .then(result =>{
-            // send back results in an object
-            res.send(result.rows);
-        })
-        .catch(error => {
-            console.log('error getting list', error);
-            res.sendStatus(500);
-        });
-});
-
-router.get('/work', (req, res) => {
-    // define request for database
-    let queryText = `SELECT * FROM "list" WHERE "category" = 'Work' ORDER BY "id" DESC;`;
-
-    pool.query(queryText)
-        .then(result =>{
-            // send back results in an object
-            res.send(result.rows);
-        })
-        .catch(error => {
-            console.log('error getting list', error);
-            res.sendStatus(500);
-        });
-});
-
-router.get('/other', (req, res) => {
-    // define request for database
-    let queryText = `SELECT * FROM "list" WHERE "category" = 'Other' ORDER BY "id" DESC;`;
-
-    pool.query(queryText)
-        .then(result =>{
-            // send back results in an object
-            res.send(result.rows);
-        })
-        .catch(error => {
-            console.log('error getting list', error);
-            res.sendStatus(500);
-        });
-});
-// ----------------- END CATEGORY GETTERS ------------------//
+// ----------------- END CATEGORY GETTER ------------------//
 
 
 
 // --------------- POSTER ----------------------//
 router.post('/', (req, res) => {
     // define request for database
-    let queryText = 
-    `INSERT INTO "list" ("complete", "task", "category")
+    let queryText =
+        `INSERT INTO "list" ("complete", "task", "category")
     VALUES ($1, $2, $3);`;
 
     const values = [req.body.complete, req.body.task, req.body.category];
 
     pool.query(queryText, values)
-        .then(result =>{
+        .then(result => {
             console.log('Added new item');
-            
+
             res.sendStatus(201);
         })
         .catch(error => {
@@ -170,7 +77,7 @@ router.put('/:id', (req, res) => {
     const values = [completionStatus, idToUpdate];
 
     pool.query(query, values)
-        .then((results) =>{
+        .then((results) => {
             res.sendStatus(200);
         })
         .catch((error) => {
@@ -186,18 +93,18 @@ router.delete('/:id', (req, res) => {
     let idToUpdate = req.params.id;
 
     console.log('idToUpdate', idToUpdate);
-    
+
     let queryText = 'DELETE FROM "list" WHERE "id" = $1;';
 
     pool.query(queryText, [idToUpdate])
         .then((result) => {
             console.log('Task deleted');
-            
+
             res.sendStatus(200);
         })
         .catch((error) => {
             console.log('Error deleting task', queryText, error);
-            
+
             res.sendStatus(500);
         })
 })
