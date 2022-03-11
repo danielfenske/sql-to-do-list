@@ -185,11 +185,11 @@ function renderList(response) {
                     <input class="completeCheckbox" type="checkbox" data-status=${list[i].complete} data-id=${list[i].id}>
                 </div>   
 
-                <div class="col-8 col-md-6 d-flex justify-content-center align-items-center text-center">${list[i].task}</div>
+                <div class="taskItem col-8 col-md-6 d-flex justify-content-center align-items-center text-center">${list[i].task}</div>
 
                 <div class="col-2 col-md-3 d-flex justify-content-end align-items-center">
                     <button class="deleteButton" data-delete=${list[i].id}>
-                        <i class="fa-regular fa-lg fa-trash-can"></i>
+                        <i class="fa-regular fa-xl fa-trash-can"></i>
                     </button>
                 </div>
             </div>
@@ -201,11 +201,11 @@ function renderList(response) {
                     <input class="completeCheckbox" type="checkbox" data-status=${list[i].complete} data-id=${list[i].id} checked>
                 </div>
 
-                <div class="col-8 col-md-6 taskComplete d-flex justify-content-center align-items-center text-center">${list[i].task}</div>
+                <div class="taskItem col-8 col-md-6 taskComplete d-flex justify-content-center align-items-center text-center">${list[i].task}</div>
             
                 <div class="col-2 col-md-3 d-flex justify-content-end align-items-center">
                     <button class="deleteButton" data-delete=${list[i].id}>
-                        <i class="fa-regular fa-lg fa-trash-can"></i>
+                        <i class="fa-regular fa-xl fa-trash-can"></i>
                     </button>
                 </div>
             </div>
