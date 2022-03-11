@@ -180,7 +180,7 @@ function renderList(response) {
     for (let i = 0; i < list.length; i++) {
         if (list[i].complete === false) {
             el.append(`
-            <div class="mt-2 pl-2 pr-2 row">
+            <div class="mt-2 pl-2 pr-2 pb-4 row">
                 <div class="col-2 col-md-3 d-flex justify-content-start align-items-center">
                     <input class="completeCheckbox" type="checkbox" data-status=${list[i].complete} data-id=${list[i].id}>
                 </div>   
@@ -196,7 +196,7 @@ function renderList(response) {
             `)
         } else {
             el.append(`
-            <div class="mt-2 pl-2 pr-2 row">
+            <div class="mt-2 pl-2 pr-2 pb-4 row">
                 <div class="col-2 col-md-3 d-flex justify-content-start align-items-center">
                     <input class="completeCheckbox" type="checkbox" data-status=${list[i].complete} data-id=${list[i].id} checked>
                 </div>
