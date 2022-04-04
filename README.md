@@ -25,7 +25,7 @@ The theme of this project for me was plan plan plan. Writing out each method tha
 
 ## Wireframe
 
-![Wireframe](/images/full-stack-to-do-list-wireframe.png)
+![Wireframe](/images/to-do-list.gif)
 
 ### Built using:
 - PostgreSQL database
